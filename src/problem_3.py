@@ -27,12 +27,12 @@ def heapify(arr, n, root, ascending = True):
 
     # check if root must be replaced
     if ascending:
-        if left < n and arr[root] < arr[left]:
+        if left < n and arr[new_root] < arr[left]:
             new_root = left
         if right < n and arr[new_root] < arr[right]:
             new_root = right
     elif not ascending:
-        if left < n and arr[root] > arr[left]:
+        if left < n and arr[new_root] > arr[left]:
             new_root = left
         if right < n and arr[new_root] > arr[right]:
             new_root = right
@@ -46,19 +46,18 @@ def heapify(arr, n, root, ascending = True):
 def heap_sort(arr, ascending = True):
     n = len(arr)
 
-    # build a heap (minheap if ascending, maxheap if not ascending)
+    # build a heap (maxheap if ascending, minheap if not ascending)
     for i in range(n//2 - 1, -1, -1):
         heapify(arr, n, i, ascending)
 
     # extract elements one by one
     for i in range(n - 1, 0, -1):
         arr[i], arr[0] = arr[0], arr[i] # swap
-        heapify(arr, i, 0)
+        heapify(arr, i, 0, ascending)
 
 def test_function(test_case):
     output = rearrange_digits(test_case[0])
     solution = test_case[1]
-    print(output)
     if sum(output) == sum(solution):
         print("Pass")
     else:
