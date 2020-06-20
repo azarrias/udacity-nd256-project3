@@ -7,6 +7,8 @@ def rotated_array_search(input_list, number):
     Returns:
        int: Index or -1
     """
+    if not number:
+        return -1
     pivot = find_pivot_index(input_list)
     if pivot == -1:
         return -1
@@ -52,6 +54,45 @@ def linear_search(input_list, number):
             return index
     return -1
 
+def eval_test(test_number, input_str, expected_output_str, actual_output_str):
+    print("")
+    print("TEST CASE " + str(test_number))
+    print("===========")
+    print("- input: " + str(input_str))
+    print("- expected output: " + str(expected_output_str))
+    print("- actual output: " + str(actual_output_str))
+    if expected_output_str == actual_output_str:
+        print("Pass")
+    else:
+        print("Fail")
+    print("")
+
+# test case 1
+n = [[6, 7, 8, 9, 10, 1, 2, 3, 4], 6]
+result = rotated_array_search(n[0], n[1])
+eval_test(1, n, 0, result)
+
+# test case 2
+n = [[6, 7, 8, 9, 10, 1, 2, 3, 4], 5]
+result = rotated_array_search(n[0], n[1])
+eval_test(2, n, -1, result)
+
+# test case 3
+n = [[6, 7, 8, 9, 10, 1, 2, 3, 4], None]
+result = rotated_array_search(n[0], n[1])
+eval_test(3, n, -1, result)
+
+# test case 4
+n = [[0, 1, 2, 3, 4, -4, -3, -2], -3]
+result = rotated_array_search(n[0], n[1])
+eval_test(4, n, 6, result)
+
+# test case 5
+n = [[2, 0, 1, 5, 4], 4]
+result = rotated_array_search(n[0], n[1])
+eval_test(5, n, -1, result)
+
+"""
 def test_function(test_case):
     input_list = test_case[0]
     number = test_case[1]
@@ -60,9 +101,9 @@ def test_function(test_case):
     else:
         print("Fail")
 
-
 test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 6])
 test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 1])
 test_function([[6, 7, 8, 1, 2, 3, 4], 8])
 test_function([[6, 7, 8, 1, 2, 3, 4], 1])
 test_function([[6, 7, 8, 1, 2, 3, 4], 10])
+"""

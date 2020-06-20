@@ -11,7 +11,11 @@ def rearrange_digits(input_list):
     num_1 = ""
     num_2 = ""
     i = len(input_list) - 1
+    if i < 1:
+        return None
     while i >= 0:
+        if input_list[i] < 0:
+            return None
         if i % 2 == 0:
             num_1 += str(input_list[i])
         else:
@@ -55,6 +59,63 @@ def heap_sort(arr, ascending = True):
         arr[i], arr[0] = arr[0], arr[i] # swap
         heapify(arr, i, 0, ascending)
 
+
+def eval_test(test_number, input_str, expected_output_list, actual_output_list):
+    print("")
+    print("TEST CASE " + str(test_number))
+    print("===========")
+    print("- input: " + str(input_str))
+    if expected_output_list:
+        print("- expected output: " + str(expected_output_list) + " (sum = " + str(sum(expected_output_list)) + ")")
+    else:
+        print("- expected output: " + str(expected_output_list))
+    if actual_output_list:
+        print("- actual output: " + str(actual_output_list) + " (sum = " + str(sum(actual_output_list)) + ")")
+    else:
+        print("- actual output: " + str(actual_output_list))
+    if expected_output_list and actual_output_list:
+        if sum(expected_output_list) == sum(actual_output_list):
+            print("Pass")
+        else:
+            print("Fail")
+    else:
+        if expected_output_list == actual_output_list:
+            print("Pass")
+        else:
+            print("Fail")       
+    print("")
+
+# test case 1
+n = [[1, 2, 3, 4, 5], [542, 31]]
+result = rearrange_digits(n[0])
+eval_test(1, n, n[1], result)
+
+# test case 2
+n = [[4, 6, 2, -5, 9, 8], None]
+result = rearrange_digits(n[0])
+eval_test(2, n, n[1], result)
+
+# test case 3
+n = [[], None]
+result = rearrange_digits(n[0])
+eval_test(3, n, n[1], result)
+
+# test case 4
+n = [[1], None]
+result = rearrange_digits(n[0])
+eval_test(4, n, n[1], result)
+
+# test case 5
+n = [[1, 2], [1, 2]]
+result = rearrange_digits(n[0])
+eval_test(5, n, n[1], result)
+
+# test case 6
+n = [[4, 6, 2, 5, 9, 8], [964, 852]]
+result = rearrange_digits(n[0])
+eval_test(6, n, n[1], result)
+
+"""
 def test_function(test_case):
     output = rearrange_digits(test_case[0])
     solution = test_case[1]
@@ -65,3 +126,4 @@ def test_function(test_case):
 
 test_function([[1, 2, 3, 4, 5], [542, 31]])
 test_case = [[4, 6, 2, 5, 9, 8], [964, 852]]
+"""

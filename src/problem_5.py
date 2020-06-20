@@ -45,6 +45,50 @@ class Trie(object):
                 return None
         return current_node
 
+def eval_test(test_number, input_str, expected_output_str, actual_output_str):
+    print("")
+    print("TEST CASE " + str(test_number))
+    print("===========")
+    print("- input: " + str(input_str))
+    print("- expected output: " + str(expected_output_str))
+    print("- actual output: " + str(actual_output_str))
+    if expected_output_str == actual_output_str:
+        print("Pass")
+    else:
+        print("Fail")
+    print("")
+
+# test case 1
+MyTrie = Trie()
+n = ["empty", None]
+result = MyTrie.find(n[0])
+eval_test(1, n[0], n[1], result)
+
+# test case 2
+wordList = [
+    "ant", "anthology", "antagonist", "antonym", 
+    "fun", "function", "factory", 
+    "trie", "trigger", "trigonometry", "tripod"
+]
+for word in wordList:
+    MyTrie.insert(word)
+n = ["ant", ['hology', 'agonist', 'onym']]
+prefix_node = MyTrie.find(n[0])
+result = prefix_node.suffixes()
+eval_test(2, n[0], n[1], result)
+
+# test case 3
+n = ["a", ['nt', 'nthology', 'ntagonist', 'ntonym']]
+prefix_node = MyTrie.find(n[0])
+result = prefix_node.suffixes()
+eval_test(3, n[0], n[1], result)
+
+# test case 4
+n = ["fur", None]
+result = MyTrie.find(n[0])
+eval_test(4, n[0], n[1], result)
+
+"""
 MyTrie = Trie()
 wordList = [
     "ant", "anthology", "antagonist", "antonym", 
@@ -57,3 +101,4 @@ for word in wordList:
 prefixNode = MyTrie.find("ant")
 if prefixNode:
     print('\n'.join(prefixNode.suffixes()))
+"""

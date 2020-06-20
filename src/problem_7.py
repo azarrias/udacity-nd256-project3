@@ -67,6 +67,49 @@ class Router:
         # return only parts of the path that are not empty or None
         return [part for part in path.split("/") if part]
 
+def eval_test(test_number, input_str, expected_output_str, actual_output_str):
+    print("")
+    print("TEST CASE " + str(test_number))
+    print("===========")
+    print("- input: " + str(input_str))
+    print("- expected output: " + str(expected_output_str))
+    print("- actual output: " + str(actual_output_str))
+    if expected_output_str == actual_output_str:
+        print("Pass")
+    else:
+        print("Fail")
+    print("")
+
+router = Router("root handler")
+router.add_handler("/home/about", "about handler")
+router.add_handler("/home/blog", "blog handler")
+
+# test case 1
+n = ["/", "root handler"]
+result = router.lookup(n[0])
+eval_test(1, n[0], n[1], result)
+
+# test case 2
+n = ["/home", None]
+result = router.lookup(n[0])
+eval_test(2, n[0], n[1], result)
+
+# test case 3
+n = ["/home/about", "about handler"]
+result = router.lookup(n[0])
+eval_test(3, n[0], n[1], result)
+
+# test case 4
+n = ["/home/blog", "blog handler"]
+result = router.lookup(n[0])
+eval_test(4, n[0], n[1], result)
+
+# test case 5
+n = ["/home/about/me", None]
+result = router.lookup(n[0])
+eval_test(5, n[0], n[1], result)
+
+"""
 # Here are some test cases and expected outputs you can use to test your implementation
 
 # create the router and add a route
@@ -80,3 +123,4 @@ print(router.lookup("/home")) # should print 'not found handler' or None if you 
 print(router.lookup("/home/about")) # should print 'about handler'
 print(router.lookup("/home/about/")) # should print 'about handler' or None if you did not handle trailing slashes
 print(router.lookup("/home/about/me")) # should print 'not found handler' or None if you did not implement one
+"""
