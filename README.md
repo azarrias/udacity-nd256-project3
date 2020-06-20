@@ -1,2 +1,2 @@
-# udacity-data-structures
-Show Me the Data Structures project
+# udacity-nd256-project3
+Problems vs. Algorithms project from Udacity's Data Structures & Algorithms Nanodegree Program
